@@ -28,5 +28,13 @@ namespace TrIdentifierTester
             var triangleType = new TrianglesIdentifier().IdentifyBySides(a, b, c);
             Assert.Equal(TrianglesTypes.Right, triangleType);
         }
+
+        [Theory]
+        [MemberData(nameof(TestDataGenerator.GetInvaidTriangles), MemberType = typeof(TestDataGenerator))]
+        public void InvalidTrianglesTestCase(float a, float b, float c)
+        {
+            var triangleType = new TrianglesIdentifier().IdentifyBySides(a, b, c);
+            Assert.Equal(TrianglesTypes.NonTriangle, triangleType);
+        }
     }
 }
